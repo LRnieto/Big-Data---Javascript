@@ -1,7 +1,7 @@
 var operacion = "", item, valorActual = 0, operando1, operando2, total;
 
 var Eventos = {
-	
+  
   init: function(){
 	
     this.eventosTeclas('boton-accion');
@@ -14,7 +14,7 @@ var Eventos = {
 	item = "";
 	operacion = undefined;
 	total = undefined;
-	  valorActual = undefined;
+	valorActual = undefined;
 	document.getElementById("display").textContent = 0;
   },
 
@@ -31,7 +31,7 @@ var Eventos = {
 	total = eval(op1 + operacion + op2);
 	  
 	valorActual = "";  
-    Eventos.asignarValorDisplay(total.toPrecision(8));	
+    Eventos.asignarValorDisplay(total.toPrecision(5));	
 	  
   },
 	
@@ -40,7 +40,12 @@ var Eventos = {
 	  if(valor != 0){
 		 numero = valor.substring(0,8);  
 	  } else {
-		 numero = 0;
+		 if(valor.toString() == "0."){
+			numero = "0.";
+		 } else {
+			numero = 0;	 
+		 }
+		 
 	  }
 	  
       
@@ -115,7 +120,7 @@ var Eventos = {
 
 		case "punto":
 			var esDecimal = display.textContent.indexOf(".",-1);
-			if ( esDecimal < 0){
+			if (esDecimal <= 0){
 				valorActual += ".";
 				Eventos.asignarValorDisplay(valorActual);	
 			}
